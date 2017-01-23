@@ -1,5 +1,5 @@
-This will set up a daemon to watch where you scp your site tar 
-and automatically deploy it using the daemon script.
+This will set up a daemon to watch where you upload your site tar 
+every hour and automatically deploys it using the daemon script.
 
 # crontab -e
 
