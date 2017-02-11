@@ -3,6 +3,7 @@
 # Pass in the architecture you want to the script
 #   i.e i386-elf
 #   i.e x86_64-elf
+#   i.e arm-eabi
 
 SOURCE_PATH="$HOME/src"
 
@@ -71,7 +72,7 @@ main() {
 	build_binutils
 	setup_path
 	build_gcc
-	x86_64-elf-gcc -v
+	"$TARGET-gcc" -v
 }
 
 if [ $# -eq 0 ]; then
