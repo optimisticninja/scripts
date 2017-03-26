@@ -1,0 +1,9 @@
+/dev/*
+/proc/*
+/sys/*
+/run/*
+/mnt/*
+/tmp/*
+/home/*
+/var/cache/pacman/pkg/
+/lost+found
