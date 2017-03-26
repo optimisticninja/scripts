@@ -8,4 +8,5 @@ cross-compiler-install.sh == Install GCC/Binutils, pass it the architecture
 compton-toggle.sh         == Toggle compton compositor (I map it to ALT+SHIFT+F12 like KDE since I use XFCE)
 xbacklight.sh             == Assign to hotkeys if ACPI is broken for your screen dimming.
 backup-system.sh          == Script I wrote to backup my system, files in backup-lists dir files are rsynced
+decrypt-backup-drive.sh   == Exactly what it says
 ```
