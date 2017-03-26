@@ -1,0 +1,16 @@
+mkinitcpio.conf
+makepkg.conf
+crypttab
+fstab
+hostname
+locale.conf
+vimrc
+locale.gen
+vimrc
+bash.bashrc
+bash.bash_logout
+inputrc
+profile
+hosts
+pacman.conf
+environment
