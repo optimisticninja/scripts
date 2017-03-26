@@ -9,4 +9,6 @@ compton-toggle.sh         == Toggle compton compositor (I map it to ALT+SHIFT+F1
 xbacklight.sh             == Assign to hotkeys if ACPI is broken for your screen dimming.
 backup-system.sh          == Script I wrote to backup my system, files in backup-lists dir files are rsynced
 decrypt-backup-drive.sh   == Exactly what it says
+tar-filesystem.sh         == Modified script from ArchWiki to backup my system minus /home
+unmount-backup-drive.sh   == Excactly what it says
 ```
