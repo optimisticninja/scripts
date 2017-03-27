@@ -14,3 +14,4 @@ profile
 hosts
 pacman.conf
 environment
+pacman.conf
