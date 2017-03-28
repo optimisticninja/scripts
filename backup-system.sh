@@ -31,6 +31,7 @@ HOME_SITES="$HOME/sites"
 HOME_PROJECTS="$HOME/projects"
 HOME_ANDROID="$HOME/android"
 HOME_WORDLISTS="$HOME/wordlists"
+HOME_WORKSPACE="$HOME/workspace"
 HOME_VMS="$HOME/vms"
 HOME_ISO="$HOME/iso"
 
@@ -84,6 +85,7 @@ create_backup_lists() {
 	create_backup_list ${HOME_PROJECTS} "dummy"
 	create_backup_list ${HOME_ANDROID} "dummy"
 	create_backup_list ${HOME_WORDLISTS} "dummy"
+	create_backup_list ${HOME_WORKSPACE} "dummy"
 	create_backup_list ${HOME_VMS} "dummy"
 	create_backup_list ${HOME_ISO} "dummy"
 }
