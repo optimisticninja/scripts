@@ -1,7 +1,10 @@
 #!/bin/bash
 
+BACKUP_SERVER="cheese"
+BACKUP_PORT="5222"
+BACKUP_USER="backup"
 BACKUP_LISTS="$HOME/scripts/backup-lists"
-BACKUP_DIR="$HOME/backup"
+BACKUP_DIR="/home/backup/"
 ENCRYPTED_DEVICE="/dev/mapper/backup"
 BACKUP_DRIVE_DECRYPTED_NAME="backup"
 
@@ -21,6 +24,8 @@ HOME_PURPLE="$HOME/.purple"
 HOME_MOZILLA="$HOME/.mozilla"
 HOME_CONFIG="$HOME/.config"
 HOME_TIXATI="$HOME/.tixati"
+HOME_YED="$HOME/.yEd"
+HOME_STEAM="$HOME/.steam"
 HOME_DOCUMENTS="$HOME/Documents"
 HOME_DOWNLOADS="$HOME/Downloads"
 HOME_MUSIC="$HOME/Music"
@@ -52,7 +57,7 @@ FILES=""
 # $1 == Base directory
 # $2 == File list - IF "dummy" rsync whole directory
 create_backup_list() {
-	if [ "$2" = "dummy" ]; then
+	if [ "$#" -eq 1 ]; then
 		FILES="${FILES} ${1}"
 	else
 		for file in `cat ${2}`; do
@@ -69,29 +74,35 @@ create_backup_lists() {
 	create_backup_list ${ETC_X11_XORG_CONF_D} ${ETC_X11_XORG_CONF_D_FILES}
 	create_backup_list ${ETC_PACMAN_D} ${ETC_PACMAN_D_FILES}
 	create_backup_list ${ETC_PACMAN_D_HOOKS} ${ETC_PACMAN_D_HOOKS_FILES}
-	create_backup_list ${HOME_ABS} "dummy"
-	create_backup_list ${HOME_SSH} "dummy"
-	create_backup_list ${HOME_PURPLE} "dummy"
-	create_backup_list ${HOME_MOZILLA} "dummy"
-	create_backup_list ${HOME_CONFIG} "dummy"
-	create_backup_list ${HOME_TIXATI} "dummy"
-	create_backup_list ${HOME_DOCUMENTS} "dummy"
-	create_backup_list ${HOME_DOWNLOADS} "dummy"
-	create_backup_list ${HOME_MUSIC} "dummy"
-	create_backup_list ${HOME_PICTURES} "dummy"
-	create_backup_list ${HOME_VIDEOS} "dummy"
-	create_backup_list ${HOME_SCRIPTS} "dummy"
-	create_backup_list ${HOME_SITES} "dummy"
-	create_backup_list ${HOME_PROJECTS} "dummy"
-	create_backup_list ${HOME_ANDROID} "dummy"
-	create_backup_list ${HOME_WORDLISTS} "dummy"
-	create_backup_list ${HOME_WORKSPACE} "dummy"
-	create_backup_list ${HOME_VMS} "dummy"
-	create_backup_list ${HOME_ISO} "dummy"
+	create_backup_list ${HOME_ABS}
+	create_backup_list ${HOME_SSH} 
+	create_backup_list ${HOME_PURPLE} 
+	create_backup_list ${HOME_MOZILLA} 
+	create_backup_list ${HOME_CONFIG} 
+	create_backup_list ${HOME_TIXATI} 
+	create_backup_list ${HOME_YED} 
+	create_backup_list ${HOME_STEAM} 
+	create_backup_list ${HOME_DOCUMENTS} 
+	create_backup_list ${HOME_DOWNLOADS} 
+	create_backup_list ${HOME_MUSIC} 
+	create_backup_list ${HOME_PICTURES} 
+	create_backup_list ${HOME_VIDEOS} 
+	create_backup_list ${HOME_SCRIPTS} 
+	create_backup_list ${HOME_SITES} 
+	create_backup_list ${HOME_PROJECTS} 
+	create_backup_list ${HOME_ANDROID} 
+	create_backup_list ${HOME_WORDLISTS} 
+	create_backup_list ${HOME_WORKSPACE} 
+	create_backup_list ${HOME_VMS} 
+	create_backup_list ${HOME_ISO} 
 }
 
 backup_files() {
-	sudo rsync -avzR ${FILES} ${BACKUP_DIR}
+	if [ ${BACKUP_SERVER} = "" ]; then
+		sudo rsync -avzR ${FILES} ${BACKUP_DIR}
+	else
+		sudo rsync -avzR ${FILES} "${BACKUP_USER}@${BACKUP_SERVER}:${BACKUP_DIR} -P ${BACKUP_PORT}"
+	fi
 }
 
 mount_decrypted_device() {
@@ -103,16 +114,18 @@ decrypt_backup_drive() {
 }
 
 main() {
-	if [ ! -e ${ENCRYPTED_DEVICE} ]; then
-		echo "!!! CONNECT BACKUP DRIVE FIRST !!!"
-		exit 1
-	else
-		#decrypt_backup_drive
-		#mkdir -p ${BACKUP_DIR}
-		#mount_decrypted_device
-		create_backup_lists
-		backup_files
+
+	if [ ${BACKUP_SERVER} = "" ]; then
+		if [ ! -e ${ENCRYPTED_DEVICE} ]; then
+			echo "!!! CONNECT BACKUP DRIVE FIRST (Hit enter when ready) !!!"
+			decrypt_backup_drive
+			mkdir -p ${BACKUP_DIR}
+			mount_decrypted_device
+		fi
 	fi
+
+	create_backup_lists
+	backup_files
 }
 
 main
