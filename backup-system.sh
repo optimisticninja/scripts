@@ -118,6 +118,7 @@ main() {
 	if [ ${BACKUP_SERVER} = "" ]; then
 		if [ ! -e ${ENCRYPTED_DEVICE} ]; then
 			echo "!!! CONNECT BACKUP DRIVE FIRST (Hit enter when ready) !!!"
+			read
 			decrypt_backup_drive
 			mkdir -p ${BACKUP_DIR}
 			mount_decrypted_device
