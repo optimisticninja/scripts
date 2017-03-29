@@ -1,8 +1,0 @@
-.vimrc
-.bashrc
-.bash_logout
-.bash_profile
-.inputrc
-.toprc
-.gitconfig
-.xinitrc
