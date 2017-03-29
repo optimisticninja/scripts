@@ -12,4 +12,5 @@ restore-system.sh         == Grabs system tarball from backup server and restore
 decrypt-backup-drive.sh   == Exactly what it says
 tar-filesystem.sh         == Modified script from ArchWiki to backup my system minus /home
 unmount-backup-drive.sh   == Excactly what it says
+randomize-disk.sh         == Randomizes a disk quicker than most methods.
 ```
