@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# Requires wget be installed.
+#
 # Pass in the architecture you want to the script
 #   i.e i386-elf
 #   i.e x86_64-elf
@@ -19,7 +21,7 @@ PREFIX="$HOME/opt/cross"
 TARGET=$1
 PATH="$PREFIX/bin:$PATH"
 
-MAKE="make -j2"
+MAKE="make -j9"
 
 download_sources() {
 	mkdir -p $SOURCE_PATH
@@ -60,7 +62,7 @@ build_gcc() {
 	cd build-gcc
 	../gcc-$GCC_VERSION/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
 	$MAKE all-gcc
-	$MAKE all-target-ligcc
+	$MAKE all-target-libgcc
 	$MAKE install-gcc
 	$MAKE install-target-libgcc
 }
