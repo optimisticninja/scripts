@@ -29,5 +29,5 @@ fi
 
 if [ $executeback = "y" ]; then
   sudo tar --exclude-from=$exclude_file --xattrs -czpvf $backupfile /
-  rsync -avz -e "ssh -p $BACKUP_PORT" "$backupfile" "${BACKUP_USER}@${BACKUP_SERVER}:${BACKUP_DIR}"
+  rsync -avz -e "ssh -p $BACKUP_PORT" "$backupfile" "${BACKUP_USER}@${BACKUP_SERVER}:${BACKUP_DIR}" && rm -f "$backupfile"
 fi
