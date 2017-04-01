@@ -1,7 +1,13 @@
 #!/bin/bash
 
-backdest=$HOME/backup
+# Remote stuff
+BACKUP_SERVER="192.168.1.10"
+BACKUP_PORT="5222"
+BACKUP_USER="jonesy"
+BACKUP_DIR="/home/jonesy/backup/"
 
+# Local stuff
+backdest=$HOME/backup
 pc=${HOSTNAME}
 distro=arch
 type=system
@@ -23,4 +29,5 @@ fi
 
 if [ $executeback = "y" ]; then
   sudo tar --exclude-from=$exclude_file --xattrs -czpvf $backupfile /
+  rsync -avz -e "ssh -p $BACKUP_PORT" "$backupfile" "${BACKUP_USER}@${BACKUP_SERVER}:${BACKUP_DIR}"
 fi
