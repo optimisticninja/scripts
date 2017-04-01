@@ -9,7 +9,13 @@
 #
 
 DISK="$1"
-DISK_SIZE=$(</proc/partitions awk '$4=="'"$DISK"'" {print sprintf("%.0f",$3*1024}}')
+DISK_SIZE=$(</proc/partitions awk '$4=="'"$DISK"'" {print sprintf("%.0f",$3*1024)}')
+
+if [ -z "$DISK" ]; then
+	echo "USAGE: ./randomize-disk.sh sda"
+	exit 1
+fi
+
 openssl enc -aes-256-ctr -nosalt \
 	-pass pass:"$(dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64)" \
 	< /dev/zero |
