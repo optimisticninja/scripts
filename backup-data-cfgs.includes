@@ -1,5 +1,4 @@
-/etc/X11/xorg.conf.d/10-monitor.conf
-/etc/X11/xorg.conf.d/20-nvidia.conf
+/etc/X11/xorg.conf.d/
 /etc/bash.bash_logout
 /etc/bash.bashrc
 /etc/crypttab
@@ -25,7 +24,6 @@
 /etc/sudoers
 /etc/sysctl.d
 /etc/udev/rules.d/60-ssd-scheduler.rules
-/etc/vimrc
 /etc/vimrc
 /home/jonesy/.AndroidStudio2.3
 /home/jonesy/.bash_logout
