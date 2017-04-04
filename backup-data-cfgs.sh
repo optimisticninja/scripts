@@ -4,7 +4,7 @@
 # Remote server backup, configure to your liking.
 #
 
-BACKUP_SERVER="192.168.1.10"
+BACKUP_SERVER="mediapc"
 BACKUP_PORT="5222"
 BACKUP_USER="jonesy"
 BACKUP_LIST="$HOME/scripts/backup-data-cfgs.includes"

@@ -24,6 +24,7 @@
 /etc/ssh/sshd_config
 /etc/sudoers
 /etc/sysctl.d
+/etc/udev/rules.d/60-ssd-scheduler.rules
 /etc/vimrc
 /etc/vimrc
 /home/jonesy/.AndroidStudio2.3

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remote stuff
-BACKUP_SERVER="192.168.1.10"
+BACKUP_SERVER="mediapc"
 BACKUP_PORT="5222"
 BACKUP_USER="jonesy"
 BACKUP_DIR="/home/jonesy/backup/"
